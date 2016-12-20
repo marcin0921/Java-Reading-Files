@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class ReadFileFromArray {
+class ReadFileFromArray {
 
-    int currentLine = -1;
-    boolean isDataLoaded = false;
+    private int currentLine = -1;
+    private boolean isDataLoaded = false;
 
-    Scanner loadFile() throws FileNotFoundException {
+    private Scanner loadFile() throws FileNotFoundException {
         File file = new File("plik");
         return new Scanner(file);
     }
 
-
-    ArrayList<String> loadData() throws FileNotFoundException {
+    private ArrayList<String> loadData() throws FileNotFoundException {
         ArrayList<String> dataInArray = new ArrayList<>();
 
         Scanner dataFromFile = loadFile();
@@ -25,7 +24,8 @@ public class ReadFileFromArray {
         isDataLoaded = true;
         return dataInArray;
     }
-    ArrayList<String> data = null;
+
+    private ArrayList<String> data = null;
     void getNextLine() throws FileNotFoundException {
 
         if (!isDataLoaded) {
@@ -34,10 +34,10 @@ public class ReadFileFromArray {
 
         try {
             currentLine++;
-            System.out.println(data.get(currentLine));
+            System.out.println("Kolejna linia to: " + data.get(currentLine));
         } catch(IndexOutOfBoundsException e) {
-            System.out.println(data.get(currentLine));
-            System.out.println("Jesteś w ostatniej linii!!");
+            System.out.println("Jesteś w ostatniej linii.");
+            currentLine = 5;
         }
 
     }
@@ -48,18 +48,11 @@ public class ReadFileFromArray {
         }
         try {
             currentLine--;
-            System.out.println(data.get(currentLine));
+            System.out.println("Poprzednia linia to: " + data.get(currentLine));
         } catch(IndexOutOfBoundsException e) {
-            System.out.println("Jesteś w pierwszej linii!!");
+            System.out.println("Jesteś w pierwszej linii.");
+            currentLine = -1;
         }
     }
-
-
-    public static void main(String[] args) throws FileNotFoundException {
-        ReadFileFromArray main = new ReadFileFromArray();
-        ArrayList<String> test = main.loadData();
-        System.out.println(test);
-    }
-
 
 }

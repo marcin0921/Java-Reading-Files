@@ -5,16 +5,14 @@ import java.util.Scanner;
 
 class Menu {
 
-    protected int userOption;
     void initMenu() throws FileNotFoundException {
         System.out.println("Wybierz opcję z MENU: \n" +
-                "W - wyświetl górną linijkę tekstu \n" +
-                "S - wyświetl dolną linijkę tekstu \n" +
+                "W - wyświetl kolejną linię \n" +
+                "S - wyświetl poprzednią linię \n" +
                 "Q - zakończ program");
         Scanner sc = new Scanner(System.in);
 
-
-
+        int userOption;
         try {
             userOption = sc.next().charAt(0);
         } catch (InputMismatchException e) {
@@ -44,23 +42,21 @@ class Menu {
         while(!(userOption == 113)) {
             switch(userOption) {
                 case 119:
-                    System.out.println("Linijka wyżej to: ");
                     readFileFromArray.getNextLine();
                     break;
                 case 115:
-                    System.out.println("Linijka niżej to: ");
                     readFileFromArray.getPreviousLine();
                     break;
                 default:
-                    System.out.println("Wciśnij W aby wyświetlić linijkę wyżej. \n" +
-                            "Wciśnij S aby wyświetlić linijkę niżej. \n" +
+                    System.out.println("Wciśnij W aby wyświetlić kolejną linię. \n" +
+                            "Wciśnij S aby wyświetlić poprzednią linię. \n" +
                             "Wciśnij Q aby zakończyć program");
                     break;
             }
             initMenu();
         }
         System.out.println("Program kończy pracę!");
+        System.exit(0);
     }
-
 
 }
